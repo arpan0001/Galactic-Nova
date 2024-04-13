@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9c0935f4d9d074494f4578546d3b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minScale: 0.8
-  maxScale: 1.2
+  minScale: 2.4
+  maxScale: 6
   rotationOffset: 50
 --- !u!1 &7933562948811272901
 GameObject:
