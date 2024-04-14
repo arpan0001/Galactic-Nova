@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class Thruster : MonoBehaviour
 {
-    TrailRenderer tr;
+    //TrailRenderer tr;
     Light thrusterLight;
 
    void Awake()
    {
-     tr = GetComponent<TrailRenderer>();
+    // tr = GetComponent<TrailRenderer>();
      thrusterLight = GetComponent<Light>();
    }
 
