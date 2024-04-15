@@ -11,6 +11,9 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
+        if(!FindTarget())
+            return;
+            
         if (InFront() && HaveLineOfSightRayCast())
         {
             FireLaser();
@@ -55,7 +58,19 @@ public class EnemyAttack : MonoBehaviour
 
     void FireLaser()
     {
-        Debug.Log("Fire Lasers!!!");
+       // Debug.Log("Fire Lasers!!!");
         laser.FireLaser(hitPosition, target);
+    }
+
+     bool FindTarget()
+    {
+      if(target == null)
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+
+      if(target == null)
+        return false;
+
+        return true;  
+    
     }
 }

@@ -6,12 +6,20 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField]GameObject explosion;
     [SerializeField]Rigidbody rigidBody;
-    [SerializeField]float laserHitModifier = 10f;
+    [SerializeField]Shield shield;
+    [SerializeField]float laserHitModifier = 100f;
 
-  public void IveBeenHit(Vector3 pos)
+   void IveBeenHit(Vector3 pos)
    {
       GameObject go = Instantiate(explosion, pos, Quaternion.identity, transform) as  GameObject;
       Destroy(go,6f);
+      
+      
+      if(shield == null)
+         return;
+
+      Debug.Log("Taking Damage");   
+      shield.TakeDamage();   
    }
 
    void OnCollisionEnter(Collision collision)
@@ -22,7 +30,7 @@ public class Explosion : MonoBehaviour
 
    public void AddForce(Vector3 hitPosition, Transform hitSource)
    {
-     Debug.LogWarning("AdForce: " + gameObject.name + "->" + hitSource.name);
+     IveBeenHit(hitPosition);
      if(rigidBody == null)
         return;
 

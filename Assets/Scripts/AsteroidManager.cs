@@ -11,8 +11,18 @@ public class AsteroidManager : MonoBehaviour
 
   void Start()
   {
-    PlaceAsteroids();
+   // PlaceAsteroids();
   }
+
+  void OnEnable()
+    {
+      EventManager.onStartGame += PlaceAsteroids;
+    }
+
+    void OnDisable()
+    {
+      EventManager.onStartGame -= PlaceAsteroids;
+    }
 
   void PlaceAsteroids()
   {

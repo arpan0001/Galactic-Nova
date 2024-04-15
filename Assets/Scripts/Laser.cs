@@ -54,10 +54,8 @@ public class Laser : MonoBehaviour
  {
       Explosion temp = target.GetComponent<Explosion>();
      if(temp != null)
-     {
-       temp.IveBeenHit(hitPosition);
-       temp.AddForce(hitPosition, transform);
-     }
+      temp.AddForce(hitPosition, transform);
+     
         
 
   }   
