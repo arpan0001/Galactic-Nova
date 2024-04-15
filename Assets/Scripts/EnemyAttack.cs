@@ -13,7 +13,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if(!FindTarget())
             return;
-            
+
         if (InFront() && HaveLineOfSightRayCast())
         {
             FireLaser();
@@ -65,7 +65,12 @@ public class EnemyAttack : MonoBehaviour
      bool FindTarget()
     {
       if(target == null)
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+       {
+          GameObject temp = GameObject.FindGameObjectWithTag("Player");
+
+           if(temp != null)
+            target = temp.transform;
+       }
 
       if(target == null)
         return false;

@@ -15,12 +15,15 @@ public class EnemySpawner : MonoBehaviour
     void OnEnable()
     {
         EventManager.onStartGame += StartSpawning;
+        EventManager.onPlayerDeath += StopSpawning;
     }
 
     void OnDisable()
     {
-        StopSpawning();
+        
         EventManager.onStartGame -= StartSpawning;
+        EventManager.onPlayerDeath -= StopSpawning;
+        
     }
 
     void SpawnEnemy()
@@ -28,6 +31,7 @@ public class EnemySpawner : MonoBehaviour
         Instantiate(enemyPrefab, transform.position, Quaternion.identity);
     }
 
+    // Updated StartSpawning to match the delegate signature
     void StartSpawning()
     {
         InvokeRepeating("SpawnEnemy", spawnTimer, spawnTimer);

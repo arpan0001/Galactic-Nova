@@ -24,13 +24,24 @@ public class Shield : MonoBehaviour
             curHealth += regenerateAmount;
             if (curHealth > maxHealth)
                 curHealth = maxHealth;
+
+            EventManager.TakeDamage(curHealth/(float)maxHealth);    
         
     }
 
     public void TakeDamage(int dmg = 1)
     {
         curHealth -= dmg;
+
+        if(curHealth < 0)
+          curHealth = 0;
+
+        EventManager.TakeDamage(curHealth/(float)maxHealth);
+
         if (curHealth < 1)
+        {
+            GetComponent<Explosion>().BlowUp();
+        }
             Debug.Log("DEAD!");
     }
 }

@@ -11,11 +11,21 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float detectionDistance = 20f;
     [SerializeField] float rayCastOffset = 2.5f;
 
+    void OnEnable()
+    {
+      EventManager.onPlayerDeath += FindMainCamera;
+    }
+
+    void OnDisable()
+    {
+      EventManager.onPlayerDeath -= FindMainCamera;
+    }
+
     void Update()
     {
       if(!FindTarget())
          return;
-         
+
         Pathfinding();
        // Turn();
         Move();
@@ -70,12 +80,23 @@ public class EnemyMovement : MonoBehaviour
     bool FindTarget()
     {
       if(target == null)
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+      {
+        GameObject temp = GameObject.FindGameObjectWithTag("Player");
+
+        if(temp != null)
+            target = temp.transform;
+      }
+        
 
       if(target == null)
         return false;
 
         return true;  
     
+    }
+
+    void FindMainCamera()
+    {
+       target = GameObject.FindGameObjectWithTag("MainCamera").transform;
     }
 }
