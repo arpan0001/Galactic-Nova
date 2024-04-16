@@ -15,6 +15,12 @@ public class PlayAudioOnSpace : MonoBehaviour
         }
         // Assign the audio clip
         audioSource.clip = audioClip;
+
+        // Preload the audio clip
+        audioSource.clip.LoadAudioData();
+        
+        // Pre-warm the audio source
+        audioSource.PlayOneShot(AudioClip.Create("SilentAudio", 1, 1, 44100, false));
     }
 
     void Update()
