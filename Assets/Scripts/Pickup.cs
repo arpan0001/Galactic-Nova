@@ -30,22 +30,27 @@ public class Pickup : MonoBehaviour
         myT.Rotate(randomRotation * Time.deltaTime);
     }
 
-   void OnTriggerEnter(Collider col)
+   void OnTriggerEnter( Collider col)
    {
      if(col.transform.CompareTag("Player"))
      {
         if(!gotHit)
-        {
-            gotHit = true;
-        }
+            PickupHit();
+        
      }
    }
 
    public void PickupHit()
    {
-     Debug.Log("Player Hit us!");
-     EventManager.ScorePoints(points);
-     EventManager.ReSpawnPickup();
-     Destroy(gameObject);
+     if(!gotHit)
+     {
+
+       gotHit = true;
+       
+       Debug.Log("Player Hit us!");
+       EventManager.ScorePoints(points);
+       EventManager.ReSpawnPickup();
+       Destroy(gameObject);
+     }
    }
 }

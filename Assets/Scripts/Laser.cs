@@ -41,6 +41,9 @@ public class Laser : MonoBehaviour
      Debug.Log("We hit: " + hit.transform.name);
 
      SpawnExplosion( hit.point, hit.transform);
+
+     if(hit.transform.CompareTag("Pickup"))
+       hit.transform.GetComponent<Pickup>().PickupHit();
    
      
      return hit.point;
