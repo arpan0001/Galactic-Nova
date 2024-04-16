@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class AsteroidManager : MonoBehaviour
 {
-    [SerializeField] Asteroid asteroid;
+    [SerializeField] Asteroid asteroidPrefab;
     [SerializeField] int numberOfAsteroidsOnAxis = 10;
     [SerializeField] int gridSpacing = 100;
+
+    public List<Asteroid> asteroid = new List<Asteroid>();
 
     void Start()
     {
@@ -16,12 +18,16 @@ public class AsteroidManager : MonoBehaviour
     void OnEnable()
     {
         EventManager.onStartGame += PlaceAsteroids;
+        EventManager.onPlayerDeath += DestroyAsteroids;
     }
 
     void OnDisable()
     {
         EventManager.onStartGame -= PlaceAsteroids;
+        EventManager.onPlayerDeath -= DestroyAsteroids;
     }
+
+    
 
     void PlaceAsteroids()
     {
@@ -37,10 +43,20 @@ public class AsteroidManager : MonoBehaviour
         }
     }
 
+    void DestroyAsteroids()
+    {
+      foreach(Asteroid ast in asteroid)
+          ast.SelfDestruct();
+
+          asteroid.Clear();
+    }
+
     void InstantiateAsteroid(int x, int y, int z)
     {
-        Instantiate(asteroid, new Vector3(transform.position.x + (x * gridSpacing) + AsteroidOffset(), transform.position.y + (y * gridSpacing) + AsteroidOffset(), transform.position.z + (z * gridSpacing) + AsteroidOffset()),
-            Quaternion.identity, transform);
+        Asteroid temp =  Instantiate(asteroidPrefab, new Vector3(transform.position.x + (x * gridSpacing) + AsteroidOffset(), transform.position.y + (y * gridSpacing) + AsteroidOffset(), transform.position.z + (z * gridSpacing) + AsteroidOffset()),
+            Quaternion.identity, transform) as Asteroid;
+
+        asteroid.Add(temp);    
     }
 
     float AsteroidOffset()

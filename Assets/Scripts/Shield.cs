@@ -40,7 +40,9 @@ public class Shield : MonoBehaviour
 
         if (curHealth < 1)
         {
+            EventManager.PlayerDeath();
             GetComponent<Explosion>().BlowUp();
+            
         }
             Debug.Log("DEAD!");
     }

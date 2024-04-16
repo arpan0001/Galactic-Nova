@@ -40,10 +40,13 @@ public class Explosion : MonoBehaviour
         rigidBody.AddForceAtPosition(forceVector* laserHitModifier, hitPosition, ForceMode.Impulse);
    }
 
+   
+
    public void BlowUp()
    {
       EventManager.PlayerDeath();
-     Instantiate(blowUp, transform.position, Quaternion.identity);
+     GameObject temp = Instantiate(blowUp, transform.position, Quaternion.identity);
+     Destroy(temp, 3f);
      Destroy(gameObject);
    }
 }

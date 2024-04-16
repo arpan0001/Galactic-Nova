@@ -14,11 +14,18 @@ public class EnemyMovement : MonoBehaviour
     void OnEnable()
     {
       EventManager.onPlayerDeath += FindMainCamera;
+      EventManager.onStartGame += SelfDestruct;
     }
 
     void OnDisable()
     {
       EventManager.onPlayerDeath -= FindMainCamera;
+      EventManager.onStartGame -= SelfDestruct;
+    }
+
+    void SelfDestruct()
+    {
+       Destroy(gameObject);
     }
 
     void Update()

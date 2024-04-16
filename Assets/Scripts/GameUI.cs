@@ -12,7 +12,7 @@ public class GameUI : MonoBehaviour
      
     void Start()
     {
-        ShowMainMenu();
+        DelayMainMenuDisplay();
     }
 
     void OnEnable()
@@ -27,17 +27,24 @@ public class GameUI : MonoBehaviour
         EventManager.onPlayerDeath -= ShowMainMenu;
     }
 
-    void ShowMainMenu()
+      void ShowMainMenu()
     {
+       Invoke("DelayMainMenuDisplay", Asteroid.destructionDelay * 3);
+    }
+
+    void DelayMainMenuDisplay()
+    {
+         
         mainMenu.SetActive(true);
         gameUI.SetActive(false);
 
-        Instantiate(playerPrefab, playerStartPosition.transform.position, playerStartPosition.transform.rotation);
     }
 
     void ShowGameUI()
     {
         mainMenu.SetActive(false);
         gameUI.SetActive(true);
+
+        Instantiate(playerPrefab, playerStartPosition.transform.position, playerStartPosition.transform.rotation);
     }
 }

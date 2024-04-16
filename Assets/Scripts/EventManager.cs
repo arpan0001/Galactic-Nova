@@ -11,16 +11,19 @@ public class EventManager : MonoBehaviour
     public delegate void TakeDamageDelegate(float amt);
     public static TakeDamageDelegate onTakeDamage;
 
+    public delegate void ScorePointsDelegate(int amt);
+    public static ScorePointsDelegate onScorePoints;
+
     public static void StartGame()
     {
-        Debug.Log("Game Start");
+        
         if(onStartGame != null)
             onStartGame();
     }
 
     public static void TakeDamage(float amt)
     {
-        Debug.Log("Take Damage: " + amt);
+       
         if(onTakeDamage != null)
             onTakeDamage(amt);
     }
@@ -30,5 +33,12 @@ public class EventManager : MonoBehaviour
         Debug.Log("Player Died");
         if(onPlayerDeath != null)
             onPlayerDeath();
+    }
+
+    public static void ScorePoints(int score)
+    {
+       
+        if(onScorePoints != null)
+            onScorePoints(score);
     }
 }

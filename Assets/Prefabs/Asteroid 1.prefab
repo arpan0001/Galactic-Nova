@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e737abe017193e4e94e7a9f1f7c6faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 892200150957310212, guid: 3fe7cedc7e6e1a744938259a8e4392db, type: 3}
-  blowUp: {fileID: 6510125619236422602, guid: 6d7b01bdef4c9d44596d7108af762e72, type: 3}
+  explosion: {fileID: 3123075737211501182, guid: a3f72d5f213bb7d458dfc2c4369e7acf, type: 3}
+  blowUp: {fileID: 892200150957310212, guid: 3fe7cedc7e6e1a744938259a8e4392db, type: 3}
   rigidBody: {fileID: 0}
   shield: {fileID: 0}
   laserHitModifier: 100
