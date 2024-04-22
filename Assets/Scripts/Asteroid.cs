@@ -24,13 +24,13 @@ public class Asteroid : MonoBehaviour
     
    void Start()
     {
-       //random size
+       
        Vector3 scale = Vector3.one;
        scale.x = Random.Range(minScale, maxScale);
        scale.y = Random.Range(minScale, maxScale);
        scale.z = Random.Range(minScale, maxScale);
        myT.localScale = scale;
-       //random rotation
+       
        randomRotation.x = Random.Range(-rotationOffset , rotationOffset );
        randomRotation.y = Random.Range(-rotationOffset , rotationOffset );
        randomRotation.z = Random.Range(-rotationOffset , rotationOffset );
