@@ -53,7 +53,7 @@ public class EnemyMovement : MonoBehaviour
     void Pathfinding()
     {
         RaycastHit hit;
-        Vector3 adjustedRaycastOffset = Vector3.zero; // Rename rayCastOffset to avoid conflict
+        Vector3 adjustedRaycastOffset = Vector3.zero; 
 
         Vector3 left = transform.position - transform.right * rayCastOffset;
         Vector3 right = transform.position + transform.right * rayCastOffset;

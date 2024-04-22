@@ -27,10 +27,7 @@ public class Laser : MonoBehaviour
    }
 
    
-    //void Update() 
-    //{ 
-   //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * maxDistance, Color.yellow);
-    //}
+    
 
   Vector3 CastRay()
  {

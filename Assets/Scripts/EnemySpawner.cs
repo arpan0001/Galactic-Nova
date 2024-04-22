@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
         Instantiate(enemyPrefab, transform.position, Quaternion.identity);
     }
 
-    // Updated StartSpawning to match the delegate signature
+    
     void StartSpawning()
     {
         InvokeRepeating("SpawnEnemy", spawnTimer, spawnTimer);

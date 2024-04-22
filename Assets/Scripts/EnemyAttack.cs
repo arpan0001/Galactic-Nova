@@ -24,14 +24,14 @@ public class EnemyAttack : MonoBehaviour
     {
         Vector3 directionToTarget = target.position - transform.position;
         float angle = Vector3.Angle(transform.forward, directionToTarget);
-        //if in range
+        
         if (Mathf.Abs(angle) > 90 && Mathf.Abs(angle) < 270)
         {
-            //  Debug.DrawLine(transform.position, target.position, Color.green);
+            
             return true;
         }
 
-        //Debug.DrawLine(transform.position, target.position, Color.yellow);
+        
         return false;
     }
 
@@ -58,7 +58,7 @@ public class EnemyAttack : MonoBehaviour
 
     void FireLaser()
     {
-       // Debug.Log("Fire Lasers!!!");
+       
         laser.FireLaser(hitPosition, target);
     }
 

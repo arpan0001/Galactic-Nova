@@ -41,12 +41,7 @@ public class PlayerMovement : MonoBehaviour
         }
             
 
-      /*  if(Input.GetKeyDown(KeyCode.W))
-           foreach( Thruster t in thruster)
-              t.Activate();
-        else if(Input.GetKeyUp(KeyCode.W)) 
-             foreach( Thruster t in thruster)
-                  t.Activate(false); */    
+     
     }
 
 

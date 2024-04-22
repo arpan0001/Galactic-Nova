@@ -20,8 +20,7 @@ public class Shield : MonoBehaviour
     {
         Debug.Log("Regeneration");
         if (curHealth < maxHealth)
-        
-            curHealth += regenerateAmount;
+                   curHealth += regenerateAmount;
             if (curHealth > maxHealth)
                 curHealth = maxHealth;
 
