@@ -4,10 +4,12 @@ using System.Collections.Generic;
 
 public class ObjectGenerator : MonoBehaviour
 {
-    public GameObject asteroidPrefab;
-    public GameObject pickupPrefab;
-    public int initialAsteroidsCount = 50;
-    public int initialPickupsCount = 10;
+    public GameObject asteroidPrefab1;
+    public GameObject asteroidPrefab2;
+    public GameObject pickupPrefab1;
+    public GameObject pickupPrefab2;
+    public int initialAsteroidsCount = 5;
+    public int initialPickupsCount = 3;
 
     private float minX = -200f;
     private float maxX = 300f;
@@ -29,14 +31,14 @@ public class ObjectGenerator : MonoBehaviour
         {
             Vector3 asteroidPosition = GetRandomPosition();
             spawnedPositions.Add(asteroidPosition);
-            Instantiate(asteroidPrefab, asteroidPosition, Quaternion.identity);
+            Instantiate(i % 2 == 0 ? asteroidPrefab1 : asteroidPrefab2, asteroidPosition, Quaternion.identity);
         }
 
         for (int i = 0; i < initialPickupsCount; i++)
         {
             Vector3 pickupPosition = GetRandomPosition();
             spawnedPositions.Add(pickupPosition);
-            Instantiate(pickupPrefab, pickupPosition, Quaternion.identity);
+            Instantiate(i % 2 == 0 ? pickupPrefab1 : pickupPrefab2, pickupPosition, Quaternion.identity);
         }
     }
 
@@ -47,14 +49,14 @@ public class ObjectGenerator : MonoBehaviour
             // Generate asteroid
             Vector3 asteroidPosition = GetRandomPosition();
             spawnedPositions.Add(asteroidPosition);
-            Instantiate(asteroidPrefab, asteroidPosition, Quaternion.identity);
+            Instantiate(Random.Range(0, 2) == 0 ? asteroidPrefab1 : asteroidPrefab2, asteroidPosition, Quaternion.identity);
 
             // Generate pickup
             Vector3 pickupPosition = GetRandomPosition();
             spawnedPositions.Add(pickupPosition);
-            Instantiate(pickupPrefab, pickupPosition, Quaternion.identity);
+            Instantiate(Random.Range(0, 2) == 0 ? pickupPrefab1 : pickupPrefab2, pickupPosition, Quaternion.identity);
 
-            yield return new WaitForSeconds(6f); // Wait for 1 second before generating next objects
+            yield return new WaitForSeconds(1f); // Wait for 1 second before generating next objects
         }
     }
 
