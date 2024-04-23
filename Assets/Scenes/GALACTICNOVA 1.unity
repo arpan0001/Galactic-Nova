@@ -598,6 +598,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   asteroidPrefab: {fileID: 5809689712806885588, guid: 96f0dcd6894ddec4ea3dbc34675f3189, type: 3}
   pickupPrefab: {fileID: 3440359256799067456, guid: f2b0cb5c85663ee429c92f1873aafecd, type: 3}
+  initialAsteroidsCount: 50
+  initialPickupsCount: 10
 --- !u!4 &766165330
 Transform:
   m_ObjectHideFlags: 0
