@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 766165330}
   - component: {fileID: 766165329}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ObjectGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -600,8 +600,11 @@ MonoBehaviour:
   asteroidPrefab2: {fileID: 6866234547304661626, guid: 628ba23c9470cad42bd54b51e950a350, type: 3}
   pickupPrefab1: {fileID: 3440359256799067456, guid: f2b0cb5c85663ee429c92f1873aafecd, type: 3}
   pickupPrefab2: {fileID: 608196566025412794, guid: f96c1b4ec6b864d429589d3ac59f7131, type: 3}
-  initialAsteroidsCount: 50
-  initialPickupsCount: 5
+  enemyPrefab: {fileID: 124934910905802407, guid: 037830323b0e9a44ab91e219498237de, type: 3}
+  initialAsteroidsCount: 0
+  initialPickupsCount: 0
+  objectDestroyDelay: 50
+  enemyGenerationDelay: 2
 --- !u!4 &766165330
 Transform:
   m_ObjectHideFlags: 0
@@ -2693,25 +2696,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1450787768775261967, guid: 037830323b0e9a44ab91e219498237de, type: 3}
-      propertyPath: movementSpeed
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 5457359093404258340, guid: 037830323b0e9a44ab91e219498237de, type: 3}
-      propertyPath: fireDelay
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5639375344618936265, guid: 037830323b0e9a44ab91e219498237de, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -69.04
+      value: -68.844
       objectReference: {fileID: 0}
     - target: {fileID: 5639375344618936265, guid: 037830323b0e9a44ab91e219498237de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.16
+      value: -0.239
       objectReference: {fileID: 0}
     - target: {fileID: 5639375344618936265, guid: 037830323b0e9a44ab91e219498237de, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.42
+      value: 19.971
       objectReference: {fileID: 0}
     - target: {fileID: 5639375344618936265, guid: 037830323b0e9a44ab91e219498237de, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2740,18 +2735,6 @@ PrefabInstance:
     - target: {fileID: 5639375344618936265, guid: 037830323b0e9a44ab91e219498237de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -13.104
-      objectReference: {fileID: 0}
-    - target: {fileID: 8235752901509937136, guid: 037830323b0e9a44ab91e219498237de, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 18.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8235752901509937136, guid: 037830323b0e9a44ab91e219498237de, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -25.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8235752901509937136, guid: 037830323b0e9a44ab91e219498237de, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
