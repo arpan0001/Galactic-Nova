@@ -68,7 +68,7 @@ public class EnemyAttack : MonoBehaviour
             if(temp != null)
                 target = temp.transform;
             else
-                return false; // Return false if player object is not found
+                return false; 
         }
 
         return true;  

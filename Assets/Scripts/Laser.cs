@@ -9,7 +9,7 @@ public class Laser : MonoBehaviour
     [SerializeField] float laserOffTime = .5f;
     [SerializeField] float maxDistance = 300f;
     [SerializeField] float fireDelay = 2f;
-    [SerializeField] Enemy enemy; // Reference to the Enemy script
+    [SerializeField] Enemy enemy; 
 
     LineRenderer lr;
     Light laserLight;
@@ -36,19 +36,19 @@ public class Laser : MonoBehaviour
         {
             Debug.Log("We hit: " + hit.transform.name);
 
-            // Check if the hit object is an enemy
+            
             if (hit.transform.CompareTag("Enemy"))
             {
-                // Call the EnemyHit method of the Enemy script
+            
                 hit.transform.GetComponent<Enemy>().EnemyHit();
             }
             else if (hit.transform.CompareTag("Pickup"))
             {
-                // Call the PickupHit method of the Pickup script
+                
                 hit.transform.GetComponent<Pickup>().PickupHit();
             }
 
-            // Call SpawnExplosion for other hit objects
+            
             SpawnExplosion(hit.point, hit.transform);
 
             return hit.point;
