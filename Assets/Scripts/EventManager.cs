@@ -8,6 +8,7 @@ public class EventManager : MonoBehaviour
     public static StartGameDelegate onStartGame;
     public static StartGameDelegate onPlayerDeath;
     public static StartGameDelegate onReSpawnPickup;
+    public static StartGameDelegate onReSpawnEnemy;
 
 
     public delegate void TakeDamageDelegate(float amt);
@@ -28,6 +29,13 @@ public class EventManager : MonoBehaviour
         if(onReSpawnPickup != null)
              onReSpawnPickup();
     }
+
+     public static void ReSpawnEnemy()
+    {
+        if(onReSpawnEnemy != null)
+             onReSpawnEnemy();
+    }
+
 
     public static void TakeDamage(float amt)
     {

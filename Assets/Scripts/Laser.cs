@@ -6,110 +6,104 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class Laser : MonoBehaviour
 {
-  [SerializeField]float laserOffTime = .5f;
-  [SerializeField]float maxDistance = 300f;
-  [SerializeField]float fireDelay = 2f;
-  LineRenderer lr;
-  Light laserLight;
-  bool canFire;
+    [SerializeField] float laserOffTime = .5f;
+    [SerializeField] float maxDistance = 300f;
+    [SerializeField] float fireDelay = 2f;
+    [SerializeField] Enemy enemy; // Reference to the Enemy script
 
-  void Awake()
-   {
-      lr = GetComponent<LineRenderer>();
-      laserLight = GetComponent<Light>();
-   }
+    LineRenderer lr;
+    Light laserLight;
+    bool canFire;
 
-  void Start()
-   {
-     lr.enabled = false;
-     laserLight.enabled = false;
-     canFire = true;
-   }
-
-   
-    
-
-  Vector3 CastRay()
- {
-   RaycastHit hit;
-   Vector3 fwd = transform.TransformDirection(Vector3.forward) * maxDistance;
-   if(Physics.Raycast(transform.position, fwd, out hit))
+    void Awake()
     {
-     Debug.Log("We hit: " + hit.transform.name);
-
-     SpawnExplosion( hit.point, hit.transform);
-
-     if(hit.transform.CompareTag("Pickup"))
-       hit.transform.GetComponent<Pickup>().PickupHit();
-   
-     
-     return hit.point;
+        lr = GetComponent<LineRenderer>();
+        laserLight = GetComponent<Light>();
     }
 
-    Debug.Log("We missed...");
-    return transform.position + (transform.forward * maxDistance);
-  }
+    void Start()
+    {
+        lr.enabled = false;
+        laserLight.enabled = false;
+        canFire = true;
+    }
 
-  void SpawnExplosion(Vector3 hitPosition, Transform target)
- {
-      Explosion temp = target.GetComponent<Explosion>();
-     if(temp != null)
-      temp.AddForce(hitPosition, transform);
-     
-        
+    Vector3 CastRay()
+    {
+        RaycastHit hit;
+        Vector3 fwd = transform.TransformDirection(Vector3.forward) * maxDistance;
+        if (Physics.Raycast(transform.position, fwd, out hit))
+        {
+            Debug.Log("We hit: " + hit.transform.name);
 
-  }   
+            // Check if the hit object is an enemy
+            if (hit.transform.CompareTag("Enemy"))
+            {
+                // Call the EnemyHit method of the Enemy script
+                hit.transform.GetComponent<Enemy>().EnemyHit();
+            }
+            else if (hit.transform.CompareTag("Pickup"))
+            {
+                // Call the PickupHit method of the Pickup script
+                hit.transform.GetComponent<Pickup>().PickupHit();
+            }
 
+            // Call SpawnExplosion for other hit objects
+            SpawnExplosion(hit.point, hit.transform);
 
+            return hit.point;
+        }
 
-  
+        Debug.Log("We missed...");
+        return transform.position + (transform.forward * maxDistance);
+    }
 
-   public void FireLaser()
-   {
-     Vector3 pos = CastRay();
-     FireLaser(pos);
+    void SpawnExplosion(Vector3 hitPosition, Transform target)
+    {
+        Explosion temp = target.GetComponent<Explosion>();
+        if (temp != null)
+            temp.AddForce(hitPosition, transform);
+    }
 
-     //FireLaser(CastRay());
-
+    public void FireLaser()
+    {
+        Vector3 pos = CastRay();
+        FireLaser(pos);
     }
 
     public void FireLaser(Vector3 targetPosition, Transform target = null)
     {
-       if(canFire)
-      {
-        if(target != null)
+        if (canFire)
         {
-          SpawnExplosion(targetPosition, target);
+            if (target != null)
+            {
+                SpawnExplosion(targetPosition, target);
+            }
+
+            lr.SetPosition(0, transform.position);
+            lr.SetPosition(1, targetPosition);
+            lr.enabled = true;
+            laserLight.enabled = true;
+            canFire = false;
+
+            Invoke("TurnOffLaser", laserOffTime);
+            Invoke("CanFire", fireDelay);
         }
-        
-        lr.SetPosition(0, transform.position);
-        lr.SetPosition(1, targetPosition);
-        lr.enabled =true;
-        laserLight.enabled = true;
-        canFire = false;
-        
-        Invoke("TurnOffLaser", laserOffTime);
-        Invoke("CanFire", fireDelay);
-      }
     }
 
-   void TurnOffLaser()
-   {
-     lr.enabled = false;
-     laserLight.enabled = false;
-     
+    void TurnOffLaser()
+    {
+        lr.enabled = false;
+        laserLight.enabled = false;
     }
 
     public float Distance
     {
-      get { return maxDistance; }
+        get { return maxDistance; }
     }
 
     void CanFire()
     {
-      canFire = true;
+        canFire = true;
     }
-
-
-
 }

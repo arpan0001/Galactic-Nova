@@ -27,11 +27,9 @@ public class EnemyAttack : MonoBehaviour
         
         if (Mathf.Abs(angle) > 90 && Mathf.Abs(angle) < 270)
         {
-            
             return true;
         }
 
-        
         return false;
     }
 
@@ -58,24 +56,21 @@ public class EnemyAttack : MonoBehaviour
 
     void FireLaser()
     {
-       
         laser.FireLaser(hitPosition, target);
     }
 
-     bool FindTarget()
+    bool FindTarget()
     {
-      if(target == null)
-       {
-          GameObject temp = GameObject.FindGameObjectWithTag("Player");
+        if(target == null)
+        {
+            GameObject temp = GameObject.FindGameObjectWithTag("Player");
 
-           if(temp != null)
-            target = temp.transform;
-       }
-
-      if(target == null)
-        return false;
+            if(temp != null)
+                target = temp.transform;
+            else
+                return false; // Return false if player object is not found
+        }
 
         return true;  
-    
     }
 }
